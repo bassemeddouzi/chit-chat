@@ -1,0 +1,13 @@
+const express = require('express')
+const midlMulter = require('../config/multerAvatar')
+const router = express.Router()
+const userController = require('../Controllers/User.Controler')
+const tokenAuth = require('../middlawear/tokenAuth')
+router.post('/login',userController.login)
+router.post('/register',midlMulter.single('avatar'),userController.register)
+router.post('/logout',tokenAuth,userController.logout)
+router.get('/',tokenAuth,userController.getProfile)
+router.get('/:id',tokenAuth,userController.getAnyUserProfile)
+router.put('/',tokenAuth,midlMulter.single('avatar'),userController.updateProfile)
+router.post('/search',tokenAuth,userController.getSearchUsers)
+module.exports = router
