@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import {
   handleIncomingOffer,
   handleAnswer,
-  handleIceCandidate,
+  // handleIceCandidate,
   startCall,
 } from "../socket/CallSocketHandler";
 
@@ -32,11 +32,11 @@ export const SocketHandler = ({ socket }) => {
         type: "RECEIVED_SOCKET_ID",
         payload: { socketId, type, from_user, to_user },
       });
-      startCall({
-        toSocketId: socketId,
-        callType: type,
-        dispatch,
-      });
+      // startCall({
+      //   toSocketId: socketId,
+      //   callType: type,
+      //   dispatch,
+      // });
     });
     socket.on("rejectCall", () => {
       dispatch({
@@ -56,17 +56,17 @@ export const SocketHandler = ({ socket }) => {
         payload: { from_user, socketId, type },
       });
     });
-    socket.on("sendOffer", (data) => {
-      handleIncomingOffer({ ...data, dispatch });
-    });
+    // socket.on("sendOffer", (data) => {
+    //   handleIncomingOffer({ ...data, dispatch });
+    // });
 
-    socket.on("sendAnswer", ({ answer }) => {
-      handleAnswer(answer);
-    });
+    // socket.on("sendAnswer", ({ answer }) => {
+    //   handleAnswer(answer);
+    // });
 
-    socket.on("iceCandidate", ({ candidate }) => {
-      handleIceCandidate(candidate);
-    });
+    // socket.on("iceCandidate", ({ candidate }) => {
+    //   handleIceCandidate(candidate);
+    // });
 
     return () => {
       socket.off("receiveMessage");

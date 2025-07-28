@@ -4,7 +4,7 @@ import { getConversation } from "../api/chat";
 import defaultAvatar from "../assets/avatar.png";
 import { Loader } from "lucide-react";
 import { isBeen } from "../utils";
-import LongWord from "./Text/LongWord";
+import LongWord from "./Tools/LongWord";
 function ListeConverstaion() {
   const dispatch = useDispatch();
 
